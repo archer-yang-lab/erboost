@@ -1,0 +1,13 @@
+erboost                     Generalized Boosted Regression Modeling
+erboost-package             Generalized Boosted Regression Models
+erboost.object              Generalized Boosted Regression Model Object
+erboost.perf                erboost performance
+interact.erboost            Estimate the strength of interaction effects
+plot.erboost                Marginal plots of fitted erboost objects
+predict.erboost             Predict method for erboost Model Fits
+pretty.erboost.tree         Print erboost tree components
+relative.influence      Methods for estimating relative influence
+shrink.erboost              L1 shrinkage of the predictor variables in a
+                        erboost
+shrink.erboost.pred         Predictions from a shrunked erboost
+summary.erboost             Summary of a erboost object

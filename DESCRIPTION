@@ -1,0 +1,12 @@
+Package: erboost
+Version: 1.0-0
+Date: 2009-02-03
+Title: Generalized Boosted Regression Models with asymmetric squared loss
+Author: Yi Yang, Teng Zhang <yi@stat.umn.edu>
+Maintainer: Yi Yang <yi@stat.umn.edu>
+Depends: R (>= 2.5.0), survival, lattice, splines
+Description: This package implements Friedman's
+  gradient boosting machine with asymmetric squared error loss.
+License: GPL (version 2 or newer)
+URL: http://www.stat.umn.edu/~yi
+Packaged: Fri Feb  3 16:22:30 2009; yi
