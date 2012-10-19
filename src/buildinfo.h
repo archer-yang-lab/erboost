@@ -1,4 +1,4 @@
-//  erboost by Greg Ridgeway  Copyright (C) 2003
+//  by Greg Ridgeway  Copyright (C) 2003
 //  License:    GNU GPL (version 2 or later)
 
 #ifndef BUILDINFO_H

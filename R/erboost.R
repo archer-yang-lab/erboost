@@ -1,3 +1,8 @@
+# The code is a modified version of gbm library originally written by Greg Ridgeway. See
+# 
+# Ridgeway, G. (2007). Generalized boosted models: A guide to the gbm package. R pack-
+# age vignette. http://cran.r-project.org/web/packages/gbm.
+
 .onAttach <- function(libname, pkgname)
      packageStartupMessage("Loaded erboost ",
                            utils::packageVersion(pkgname, libname),"\n")

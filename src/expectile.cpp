@@ -1,4 +1,4 @@
-
+//  erboost by Yi Yang and Hui Zou  Copyright (C) 2012
 #include "expectile.h"
 
 CExpectile::CExpectile(double dAlpha)

@@ -1,5 +1,9 @@
+// The code is a modified version of gbm library originally written by Greg Ridgeway. See
+// 
+// Ridgeway, G. (2007). Generalized boosted models: A guide to the gbm package. R pack-
+// age vignette. http://cran.r-project.org/web/packages/gbm.
 //------------------------------------------------------------------------------
-//  erboost by Greg Ridgeway  Copyright (C) 2003
+//  by Greg Ridgeway  Copyright (C) 2003
 //
 //  File:       distribution.h
 //

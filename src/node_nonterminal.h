@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-//  erboost by Greg Ridgeway  Copyright (C) 2003
+//  by Greg Ridgeway  Copyright (C) 2003
 //
 //  File:       node_nonterminal.h
 //

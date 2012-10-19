@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-//  erboost by Greg Ridgeway  Copyright (C) 2003
+//  by Greg Ridgeway  Copyright (C) 2003
 //  File:       quantile.h
 //
 //  License:    GNU GPL (version 2 or later)
