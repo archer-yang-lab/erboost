@@ -47,10 +47,12 @@ graphics and only returns the grid of evaluation points and their average
 predictions.
 }
 \references{
+Y. Yang and H. Zou (2012) \dQuote{Nonparametric Multivariate Expectile Regression via ER-Boost,} submitted to \emph{Journal of Business & Economic Statistics}.
+
 J.H. Friedman (2001). "Greedy Function Approximation: A Gradient Boosting
 Machine," Annals of Statistics 29(4).
 }
-\author{Greg Ridgeway \email{gregr@rand.org}}
+\author{Yi Yang \email{yiyang@umn.edu} and Hui Zou \email{hzou@stat.umn.edu}}
 
 \seealso{ \code{\link{erboost}}, \code{\link{erboost.object}}, \code{\link[graphics]{plot}} }
 

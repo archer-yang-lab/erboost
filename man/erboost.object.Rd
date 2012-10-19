@@ -1,13 +1,13 @@
 \name{erboost.object}
 \alias{erboost.object}
-\title{Generalized Boosted Regression Model Object}
+\title{ER-Boost Expectile Regression Model Object}
 \description{These are objects representing fitted \code{erboost}s.}
 \section{Structure}{The following components must be included in a legitimate \code{erboost} object.}
 \value{
 \item{initF}{the "intercept" term, the initial predicted value to which trees
 make adjustments}
 \item{fit}{a vector containing the fitted values on the scale of regression
-function (e.g. log-odds scale for bernoulli, log scale for poisson)}
+function}
 \item{train.error}{a vector of length equal to the number of fitted trees
 containing the value of the loss function for each boosting iteration
 evaluated on the training data}
@@ -33,7 +33,7 @@ equal to the number of levels in the categorical split variable. -1 indicates
 left, +1 indicates right, and 0 indicates that the level was not present in the
 training data}
 }
-\author{Greg Ridgeway \email{gregr@rand.org}}
+\author{Yi Yang \email{yiyang@umn.edu} and Hui Zou \email{hzou@stat.umn.edu}}
 \seealso{
 \code{\link{erboost}}
 }

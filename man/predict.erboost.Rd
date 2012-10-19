@@ -2,13 +2,12 @@
 \alias{predict.erboost}
 \title{ Predict method for erboost Model Fits }
 \description{
-  Predicted values based on a generalized boosted model object
+  Predicted values based on an ER-Boost Expectile regression model object
 }
 \usage{
 \method{predict}{erboost}(object,
         newdata,
         n.trees,
-        type="link",
         single.tree=FALSE,
         ...)
 }
@@ -18,7 +17,6 @@
   \item{n.trees}{ Number of trees used in the prediction. \code{n.trees} may
                   be a vector in which case predictions are returned for each
                   iteration specified}
-  \item{type}{ The scale on which erboost makes the predictions }
   \item{single.tree}{If \code{single.tree=TRUE} then \code{predict.erboost} returns
                      only the predictions from tree(s) \code{n.trees}}
   \item{\dots}{ further arguments passed to or from other methods }
@@ -35,11 +33,9 @@ as the one originally used to fit the model.
 }
 \value{
 
-Returns a vector of predictions. By default the predictions are on the scale of f(x). For example, for the Bernoulli loss the returned value is on the log odds scale, poisson loss on the log scale, and coxph is on the log hazard scale.
-
-If \code{type="response"} then \code{erboost} converts back to the same scale as the outcome. Currently the only effect this will have is returning probabilities for bernoulli and expected counts for poisson. For the other distributions "response" and "link" return the same.
+Returns a vector of predictions. By default the predictions are on the scale of f(x).
 }
-\author{Greg Ridgeway \email{gregr@rand.org}}
+\author{Yi Yang \email{yiyang@umn.edu} and Hui Zou \email{hzou@stat.umn.edu}}
 \seealso{
 \code{\link{erboost}}, \code{\link{erboost.object}}
 }

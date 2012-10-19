@@ -25,10 +25,9 @@ shrink.erboost.pred(object,
 A vector with length equal to the number of observations in newdata containing the predictions
 }
 
-\author{ Greg Ridgeway \email{gregr@rand.org} }
+\author{ Yi Yang \email{yiyang@umn.edu} and Hui Zou \email{hzou@stat.umn.edu} }
 
 \section{Warning}{This function is experimental}
 
 \seealso{ \code{\link{shrink.erboost}}, \code{\link{erboost}} }
-\examples{}
 \keyword{ methods }

@@ -9,14 +9,9 @@
 
 
 predict.erboost <- function(object,newdata,n.trees,
-                        type="link",
                         single.tree = FALSE,
                         ...)
 {
-   if(!is.element(type, c("link","response")))
-   {
-      stop("type must be either 'link' or 'response'")
-   }
    if(!is.null(object$Terms))
    {
       x <- model.frame(terms(reformulate(object$var.names)),
@@ -396,7 +391,7 @@ erboost.more <- function(object,
 erboost.fit <- function(x,y,
                     offset = NULL,
                     misc = NULL,
-                    distribution = "expectile",
+                    distribution = list(name = "expectile", alpha = 0.5),
                     w = NULL,
                     var.monotone = NULL,
                     n.trees = 100,
@@ -631,7 +626,7 @@ erboost.fit <- function(x,y,
 
 
 erboost <- function(formula = formula(data),
-                distribution = "expectile",
+                distribution = list(name = "expectile", alpha = 0.5),
                 data = list(),
                 weights,
                 var.monotone = NULL,
@@ -952,36 +947,6 @@ summary.erboost <- function(object,
    }
    return(data.frame(var=object$var.names[i],
                      rel.inf=rel.inf[i]))
-}
-
-
-quantile.rug <- function(x,prob=(0:10)/10,...)
-{
-     quants <- quantile(x[!is.na(x)],prob=prob)
-     if(length(unique(quants)) < length(prob))
-     {
-          quants <- jitter(quants)
-     }
-     rug(quants,...)
-}
-
-
-
-pretty.erboost.tree <- function(object,i.tree=1)
-{
-   if((i.tree<1) || (i.tree>length(object$trees)))
-   {
-      stop("i.tree is out of range. Must be less than ",length(object$trees))
-   }
-   else
-   {
-      temp <- data.frame(object$trees[[i.tree]])
-      names(temp) <- c("SplitVar","SplitCodePred","LeftNode",
-                       "RightNode","MissingNode","ErrorReduction",
-                       "Weight","Prediction")
-      row.names(temp) <- 0:(nrow(temp)-1)
-   }
-   return(temp)
 }
 
 

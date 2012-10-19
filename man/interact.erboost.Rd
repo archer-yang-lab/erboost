@@ -33,10 +33,12 @@ then
 Returns the value of \eqn{H}.
 }
 \references{
+Y. Yang and H. Zou (2012) \dQuote{Nonparametric Multivariate Expectile Regression via ER-Boost,} submitted to \emph{Journal of Business & Economic Statistics}.
+
 J.H. Friedman and B.E. Popescu (2005). \dQuote{Predictive Learning via Rule
 Ensembles.} Section 8.1
 }
-\author{Greg Ridgeway \email{gregr@rand.org}}
+\author{Yi Yang \email{yiyang@umn.edu} and Hui Zou \email{hzou@stat.umn.edu}}
 
 \seealso{ \code{\link{erboost}}, \code{\link{erboost.object}} }
 

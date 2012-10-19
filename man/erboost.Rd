@@ -2,11 +2,11 @@
 \alias{erboost}
 \alias{erboost.more}
 \alias{erboost.fit}
-\title{Generalized Boosted Regression Modeling}
-\description{Fits generalized boosted regression models.}
+\title{ER-Boost Expectile Regression Modeling}
+\description{Fits ER-Boost Expectile Regression models.}
 \usage{
 erboost(formula = formula(data),
-    distribution = "bernoulli",
+    distribution = list(name="expectile",alpha=0.5),
     data = list(),
     weights,
     var.monotone = NULL,
@@ -23,7 +23,7 @@ erboost(formula = formula(data),
 erboost.fit(x,y,
         offset = NULL,
         misc = NULL,
-        distribution = "bernoulli",
+        distribution = list(name="expectile",alpha=0.5),
         w = NULL,
         var.monotone = NULL,
         n.trees = 100,
@@ -49,16 +49,10 @@ erboost.more(object,
    include an offset term (e.g. y~offset(n)+x). If \code{keep.data=FALSE} in 
    the initial call to \code{erboost} then it is the user's responsibility to 
    resupply the offset to \code{\link{erboost.more}}.}
-\item{distribution}{a character string specifying the name of the distribution 
-   to use or a list with a component \code{name} specifying the distribution 
-   and any additional parameters needed. 
-   Currently available options are "gaussian" (squared error), "laplace"
-   (absolute loss), "bernoulli" (logistic regression for 0-1 outcomes), 
-   "adaboost" (the AdaBoost exponential loss for 0-1 outcomes), "poisson" 
-   (count outcomes), and "coxph" (right censored observations). Quantile 
-   regression is also available and \code{distribution} must a list of the form 
-   \code{list(name="quantile",alpha=0.25)} where \code{alpha} is the quantile 
-   to estimate. The current version's Laplace and quantile regression methods do 
+\item{distribution}{a list with a component \code{name} specifying the distribution 
+   and any additional parameters needed.Expectile regression is available and \code{distribution} must a list of the form 
+   \code{list(name="expectile",alpha=0.25)} where \code{alpha} is the expectile 
+   to estimate. The current version's expectile regression methods do 
    not handle non-constant weights and will stop.}
 \item{data}{an optional data frame containing the variables in the model. By
    default the variables are taken from \code{environment(formula)}, typically 
@@ -113,9 +107,7 @@ predictor variables and \code{y} is the vector of outcomes. The number of rows
 in \code{x} must be the same as the length of \code{y}.}
 \item{offset}{a vector of values for the offset}
 \item{misc}{For \code{erboost.fit}: \code{misc} is an R object that is simply passed on to
-the erboost engine. It can be used for additional data for the specific distribution.
-Currently it is only used for passing the censoring indicator for the Cox
-proportional hazards model.}
+the erboost engine.}
 \item{w}{For \code{erboost.fit}: \code{w} is a vector of weights of the same
 length as the \code{y}.}
 \item{var.names}{For \code{erboost.fit}: A vector of strings of length equal to the
@@ -125,11 +117,7 @@ variable.}
 
 }
 \details{
-
-See \code{vignette("erboost")} for technical details of the package. Also available 
-at \url{../doc/erboost.pdf} (if you are using HTML help).
-
-This package implements the generalized boosted modeling framework.
+This package implements a regression tree based gradient boosting estimator for nonparametric multivariate expectile regression. The code is a modified version of gbm library originally written by Greg Ridgeway.
 Boosting is the process of iteratively adding basis functions in a greedy
 fashion so that each additional basis function further reduces the selected
 loss function. This implementation closely follows Friedman's Gradient
@@ -138,11 +126,7 @@ Boosting Machine (Friedman, 2001).
 In addition to many of the features documented in the Gradient Boosting Machine,
 \code{erboost} offers additional features including the out-of-bag estimator for
 the optimal number of iterations, the ability to store and manipulate the
-resulting \code{erboost} object, and a variety of other loss functions that had not
-previously had associated boosting algorithms, including the Cox partial
-likelihood for censored data, the poisson likelihood for count outcomes, and a
-gradient boosting implementation to minimize the AdaBoost exponential loss
-function.
+resulting \code{erboost} object.
 
 \code{erboost.fit} provides the link between R and the C++ erboost engine. \code{erboost}
 is a front-end to \code{erboost.fit} that uses the familiar R modeling formulas.
@@ -156,6 +140,8 @@ For general practice \code{erboost} is preferable.
 \code{\link{erboost.object}}.
 }
 \references{
+Y. Yang and H. Zou (2012) \dQuote{Nonparametric Multivariate Expectile Regression via ER-Boost,} submitted to \emph{Journal of Business & Economic Statistics}.
+
 Y. Freund and R.E. Schapire (1997) \dQuote{A decision-theoretic generalization of
 on-line learning and an application to boosting,} \emph{Journal of Computer and
 System Sciences,} 55(1):119-139.
@@ -181,7 +167,7 @@ Quantitative Regression Framework}. PhD dissertation, UCLA Statistics.
 \url{http://www-stat.stanford.edu/~jhf/R-MART.html}
 }
 
-\author{Greg Ridgeway \email{gregr@rand.org}
+\author{Yi Yang \email{yiyang@umn.edu} and Hui Zou \email{hzou@stat.umn.edu}
 
 Quantile regression code developed by Brian Kriegler \email{bk@stat.ucla.edu}}
 
@@ -194,8 +180,6 @@ Quantile regression code developed by Brian Kriegler \email{bk@stat.ucla.edu}}
 \code{\link{pretty.erboost.tree}}.
 }
 \examples{
-# A least squares regression example
-# create some data
 
 N <- 1000
 X1 <- runif(N)
@@ -223,8 +207,8 @@ erboost1 <- erboost(Y~X1+X2+X3+X4+X5+X6,         # formula
     var.monotone=c(0,0,0,0,0,0), # -1: monotone decrease,
                                  # +1: monotone increase,
                                  #  0: no monotone restrictions
-    distribution="gaussian",     # bernoulli, adaboost, gaussian,
-                                 # poisson, coxph, and quantile available
+    distribution=list(name="expectile",alpha=0.5),
+                                 # expectile, quantile
     n.trees=3000,                # number of trees
     shrinkage=0.005,             # shrinkage or learning rate,
                                  # 0.001 to 0.1 usually work
