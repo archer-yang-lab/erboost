@@ -23,8 +23,7 @@ containing an out-of-bag estimate of the marginal reduction in the expected
 value of the loss function. The out-of-bag estimate uses only the training
 data and is useful for estimating the optimal number of boosting iterations.
 See \code{\link{erboost.perf}}}
-\item{trees}{a list containing the tree structures. The components are best
-viewed using \code{\link{pretty.erboost.tree}}}
+\item{trees}{a list containing the tree structures.}
 \item{c.splits}{a list of all the categorical splits in the collection of
 trees. If the \code{trees[[i]]} component of a \code{erboost} object describes a
 categorical split then the splitting value will refer to a component of

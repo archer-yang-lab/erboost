@@ -177,7 +177,6 @@ Quantile regression code developed by Brian Kriegler \email{bk@stat.ucla.edu}}
 \code{\link{plot.erboost}},
 \code{\link{predict.erboost}},
 \code{\link{summary.erboost}},
-\code{\link{pretty.erboost.tree}}.
 }
 \examples{
 
@@ -234,10 +233,6 @@ print(best.iter)
 # plot variable influence
 summary(erboost1,n.trees=1)         # based on the first tree
 summary(erboost1,n.trees=best.iter) # based on the estimated best number of trees
-
-# compactly print the first and last trees for curiosity
-print(pretty.erboost.tree(erboost1,1))
-print(pretty.erboost.tree(erboost1,erboost1$n.trees))
 
 # make some new data
 N <- 1000
