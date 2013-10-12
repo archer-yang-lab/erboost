@@ -37,8 +37,11 @@ with \code{cv.folds}>1}
 \code{erboost.perf} returns the estimated optimal number of iterations. The method 
 of computation depends on the \code{method} argument.}
 \references{
-Y. Yang and H. Zou (2012) \dQuote{Nonparametric Multivariate Expectile Regression via ER-Boost,} submitted to \emph{Journal of Business & Economic Statistics}.
-G. Ridgeway (2003). "A note on out-of-bag estimation for estimating the optimal
+Yang, Y. and Zou, H. (2013), \dQuote{Nonparametric Multiple Expectile Regression via ER-Boost,} \emph{Journal of Statistical Computation and Simulation}. Accept with minor revisions.
+
+BugReport: \url{http://code.google.com/p/erboost/}\cr
+
+ G. Ridgeway (2003). "A note on out-of-bag estimation for estimating the optimal
 number of boosting iterations," a working paper available at
 \url{http://www.i-pensieri.com/gregr/erboost.shtml}.
 }

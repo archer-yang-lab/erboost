@@ -50,7 +50,7 @@ erboost.more(object,
    the initial call to \code{erboost} then it is the user's responsibility to 
    resupply the offset to \code{\link{erboost.more}}.}
 \item{distribution}{a list with a component \code{name} specifying the distribution 
-   and any additional parameters needed.Expectile regression is available and \code{distribution} must a list of the form 
+   and any additional parameters needed. Expectile regression is available and \code{distribution} must a list of the form 
    \code{list(name="expectile",alpha=0.25)} where \code{alpha} is the expectile 
    to estimate. The current version's expectile regression methods do 
    not handle non-constant weights and will stop.}
@@ -117,7 +117,8 @@ variable.}
 
 }
 \details{
-This package implements a regression tree based gradient boosting estimator for nonparametric multivariate expectile regression. The code is a modified version of gbm library originally written by Greg Ridgeway.
+Expectile regression (Newey & Powell 1987) is a nice tool for estimating the conditional expectiles of a response variable given a set of covariates. This package implements a regression tree based gradient boosting estimator for nonparametric multiple expectile regression. The code is a modified version of \code{gbm} library (\url{http://cran.r-project.org/web/packages/gbm/}) originally written by Greg Ridgeway.
+
 Boosting is the process of iteratively adding basis functions in a greedy
 fashion so that each additional basis function further reduces the selected
 loss function. This implementation closely follows Friedman's Gradient
@@ -140,17 +141,17 @@ For general practice \code{erboost} is preferable.
 \code{\link{erboost.object}}.
 }
 \references{
-Y. Yang and H. Zou (2012) \dQuote{Nonparametric Multivariate Expectile Regression via ER-Boost,} submitted to \emph{Journal of Business & Economic Statistics}.
+Yang, Y. and Zou, H. (2013), \dQuote{Nonparametric Multiple Expectile Regression via ER-Boost,} \emph{Journal of Statistical Computation and Simulation}. Accept with minor revisions.
 
-Y. Freund and R.E. Schapire (1997) \dQuote{A decision-theoretic generalization of
-on-line learning and an application to boosting,} \emph{Journal of Computer and
-System Sciences,} 55(1):119-139.
+BugReport: \url{http://code.google.com/p/erboost/}\cr
+
+
+
 
 G. Ridgeway (1999). \dQuote{The state of boosting,} \emph{Computing Science and
 Statistics} 31:172-181.
 
-J.H. Friedman, T. Hastie, R. Tibshirani (2000). \dQuote{Additive Logistic Regression:
-a Statistical View of Boosting,} \emph{Annals of Statistics} 28(2):337-374.
+\url{http://cran.r-project.org/web/packages/gbm/}
 
 J.H. Friedman (2001). \dQuote{Greedy Function Approximation: A Gradient Boosting
 Machine,} \emph{Annals of Statistics} 29(5):1189-1232.
@@ -158,18 +159,11 @@ Machine,} \emph{Annals of Statistics} 29(5):1189-1232.
 J.H. Friedman (2002). \dQuote{Stochastic Gradient Boosting,} \emph{Computational Statistics
 and Data Analysis} 38(4):367-378.
 
-B. Kriegler (2007). \emph{Cost-Sensitive Stochastic Gradient Boosting Within a 
-Quantitative Regression Framework}. PhD dissertation, UCLA Statistics. 
-\url{http://theses.stat.ucla.edu/57/KrieglerDissertation.pdf}
-
-\url{http://www.i-pensieri.com/gregr/erboost.shtml}
-
-\url{http://www-stat.stanford.edu/~jhf/R-MART.html}
 }
 
 \author{Yi Yang \email{yiyang@umn.edu} and Hui Zou \email{hzou@stat.umn.edu}
+}
 
-Quantile regression code developed by Brian Kriegler \email{bk@stat.ucla.edu}}
 
 \seealso{
 \code{\link{erboost.object}},
