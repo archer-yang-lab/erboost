@@ -282,8 +282,8 @@ erboost.more <- function(object,
       Terms <- attr(m, "terms")
       a <- attributes(Terms)
 
-      y <- as.vector(model.extract(m, response))
-      offset <- model.extract(m,offset)
+      y <- as.vector(model.extract(m, "response"))
+      offset <- model.extract(m,"offset")
       x <- model.frame(delete.response(Terms),
                        data,
                        na.action=na.pass)
