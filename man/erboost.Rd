@@ -198,7 +198,7 @@ erboost1 <- erboost(Y~X1+X2+X3+X4+X5+X6,         # formula
                                  # +1: monotone increase,
                                  #  0: no monotone restrictions
     distribution=list(name="expectile",alpha=0.5),
-                                 # expectile, quantile
+                                 # expectile
     n.trees=3000,                # number of trees
     shrinkage=0.005,             # shrinkage or learning rate,
                                  # 0.001 to 0.1 usually work

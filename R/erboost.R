@@ -507,7 +507,7 @@ erboost.fit <- function(x,y,
       stop("The distribution is missing a 'name' component, for example list(name=\"expectile\")")
    }
    supported.distributions <-
-      c("quantile","expectile")
+      c("expectile")
    # check potential problems with the distributions
    if(!is.element(distribution$name,supported.distributions))
    {
@@ -516,22 +516,6 @@ erboost.fit <- function(x,y,
    if(!is.numeric(y))
    {
       stop("The response ",response.name," must be numeric. Factors must be converted to numeric")
-   }
-   if(distribution$name == "quantile")
-   {
-      if(length(unique(w)) > 1)
-      {
-         stop("This version of package for the quantile regression lacks a weighted quantile. For now the weights must be constant.")
-      }
-      if(is.null(distribution$alpha))
-      {
-         stop("For quantile regression, the distribution parameter must be a list with a parameter 'alpha' indicating the quantile, for example list(name=\"quantile\",alpha=0.95).")
-      } else
-      if((distribution$alpha<0) || (distribution$alpha>1))
-      {
-         stop("alpha must be between 0 and 1.")
-      }
-      Misc <- c(alpha=distribution$alpha)
    }
    if(distribution$name == "expectile")
    {
@@ -767,9 +751,7 @@ erboost.perf <- function(object,
    if(plot.it)
    {
       par(mar=c(5,4,4,4)+.1)
-      ylab <- switch(substring(object$distribution$name,1,2),
-                               qu="Quantile loss",
-                               as="Expectile loss")
+      ylab <- "Expectile loss"
       if(object$train.fraction==1)
       {
          ylim <- range(object$train.error)
@@ -947,120 +929,6 @@ summary.erboost <- function(object,
    }
    return(data.frame(var=object$var.names[i],
                      rel.inf=rel.inf[i]))
-}
-
-
-
-shrink.erboost.pred <- function(object,newdata,n.trees,
-                            lambda=rep(1,length(object$var.names)),
-                            ...)
-{
-   if(length(lambda) != length(object$var.names))
-   {
-      stop("lambda must have the same length as the number of variables in the erboost object.")
-   }
-
-   if(!is.null(object$Terms))
-   {
-      x <- model.frame(delete.response(object$Terms),
-                       newdata,
-                       na.action=na.pass)
-   }
-   else
-   {
-      x <- newdata
-   }
-
-   cRows <- nrow(x)
-   cCols <- ncol(x)
-
-   for(i in 1:cCols)
-   {
-      if(is.factor(x[,i]))
-      {
-         j <- match(levels(x[,i]), object$var.levels[[i]])
-         if(any(is.na(j)))
-         {
-            stop(paste("New levels for variable ",
-                        object$var.names[i],": ",
-                        levels(x[,i])[is.na(j)],sep=""))
-         }
-         x[,i] <- as.numeric(x[,i])-1
-      }
-   }
-
-   x <- as.vector(unlist(x))
-   if(missing(n.trees) || any(n.trees > object$n.trees))
-   {
-      n.trees <- n.trees[n.trees<=object$n.trees]
-      if(length(n.trees)==0) n.trees <- object$n.trees
-      warning("n.trees not specified or some values exceeded number fit so far. Using ",n.trees,".")
-   }
-   # sort n.trees so that predictions are easier to generate and store
-   n.trees <- sort(n.trees)
-
-   predF <- .Call("erboost_shrink_pred",
-                  X=as.double(x),
-                  cRows=as.integer(cRows),
-                  cCols=as.integer(cCols),
-                  n.trees=as.integer(n.trees),
-                  initF=object$initF,
-                  trees=object$trees,
-                  c.split=object$c.split,
-                  var.type=as.integer(object$var.type),
-                  depth=as.integer(object$interaction.depth),
-                  lambda=as.double(lambda),
-                  PACKAGE = "erboost")
-
-   return(predF)
-}
-
-# evaluates the objective function and gradient with respect to beta
-# beta = log(lambda/(1-lambda))
-shrink.erboost <- function(object,n.trees,
-                       lambda=rep(10,length(object$var.names)),
-                       ...)
-{
-   if(length(lambda) != length(object$var.names))
-   {
-      stop("lambda must have the same length as the number of variables in the erboost object.")
-   }
-
-   if(is.null(object$data))
-   {
-      stop("shrink.erboost requires keep.data=TRUE when erboost model is fit.")
-   }
-
-   y <- object$data$y
-   x <- object$data$x
-
-   cCols <- length(object$var.names)
-   cRows <- length(x)/cCols
-
-
-   if(missing(n.trees) || (n.trees > object$n.trees))
-   {
-      n.trees <- object$n.trees
-      warning("n.trees not specified or some values exceeded number fit so far. Using ",n.trees,".")
-   }
-
-   result <- .Call("erboost_shrink_gradient",
-                  y=as.double(y),
-                  X=as.double(x),
-                  cRows=as.integer(cRows),
-                  cCols=as.integer(cCols),
-                  n.trees=as.integer(n.trees),
-                  initF=object$initF,
-                  trees=object$trees,
-                  c.split=object$c.split,
-                  var.type=as.integer(object$var.type),
-                  depth=as.integer(object$interaction.depth),
-                  lambda=as.double(lambda),
-                  PACKAGE = "erboost")
-
-   names(result) <- c("predF","objective","gradient")
-
-   return(result)
 }
 
 
