@@ -141,17 +141,14 @@ For general practice \code{erboost} is preferable.
 \code{\link{erboost.object}}.
 }
 \references{
-Yang, Y. and Zou, H. (2013), \dQuote{Nonparametric Multiple Expectile Regression via ER-Boost,} \emph{Journal of Statistical Computation and Simulation}. Accept with minor revisions.
+Yang, Y. and Zou, H. (2013), \dQuote{Nonparametric Multiple Expectile Regression via ER-Boost,} \emph{Journal of Statistical Computation and Simulation}. Accepted.
 
 BugReport: \url{http://code.google.com/p/erboost/}\cr
-
-
-
 
 G. Ridgeway (1999). \dQuote{The state of boosting,} \emph{Computing Science and
 Statistics} 31:172-181.
 
-\url{http://cran.r-project.org/web/packages/gbm/}
+\url{http://cran.r-project.org/web/packages/gbm/}\cr
 
 J.H. Friedman (2001). \dQuote{Greedy Function Approximation: A Gradient Boosting
 Machine,} \emph{Annals of Statistics} 29(5):1189-1232.

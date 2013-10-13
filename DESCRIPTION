@@ -1,6 +1,6 @@
 Package: erboost
 Title: Nonparametric Multiple Expectile Regression via ER-Boost.
-Version: 1.0
+Version: 1.1
 Date: 2013-10-11
 Author: Yi Yang <yiyang@umn.edu>, Hui Zou <hzou@stat.umn.edu>
 Maintainer: Yi Yang <yiyang@umn.edu>

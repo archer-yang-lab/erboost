@@ -25,9 +25,14 @@ This function is currently experimental. Used in conjunction with a gradient asc
   \item{gradient}{A vector with length equal to the number of variables containing the derivative of the objective function with respect to beta, the logit transform of the shrinkage parameter for each variable}
 }
 \references{ 
-Yang, Y. and Zou, H. (2013), \dQuote{Nonparametric Multiple Expectile Regression via ER-Boost,} \emph{Journal of Statistical Computation and Simulation}. Accept with minor revisions.
+Yang, Y. and Zou, H. (2013), \dQuote{Nonparametric Multiple Expectile Regression via ER-Boost,} \emph{Journal of Statistical Computation and Simulation}. Accepted.
 
 BugReport: \url{http://code.google.com/p/erboost/}\cr
+
+G. Ridgeway (1999). \dQuote{The state of boosting,} \emph{Computing Science and
+Statistics} 31:172-181.
+
+\url{http://cran.r-project.org/web/packages/gbm/}\cr
 
 
 Hastie, T. J., and Pregibon, D. "Shrinking Trees." AT&T Bell Laboratories Technical Report (March 1990). \url{http://www-stat.stanford.edu/~hastie/Papers/shrinktree.ps} }
