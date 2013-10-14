@@ -240,7 +240,7 @@ Y <- X1**1.5 + 2 * (X2**.5) + mu + rnorm(N,0,sigma)
 data2 <- data.frame(Y=Y,X1=X1,X2=X2,X3=X3,X4=X4,X5=X5,X6=X6)
 
 # predict on the new data using "best" number of trees
-# f.predict generally will be on the canonical scale (logit,log,etc.)
+# f.predict generally will be on the canonical scale
 f.predict <- predict.erboost(erboost1,data2,best.iter)
 
 # least squares error
